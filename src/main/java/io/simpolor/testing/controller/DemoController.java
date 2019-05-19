@@ -30,7 +30,7 @@ public class DemoController {
 
     @RequestMapping(value = "/{seq}", method = RequestMethod.GET)
     public Demo demoView(@PathVariable long seq) {
-        return demoService.view(seq).orElse(new Demo());
+        return demoService.view(seq);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -40,11 +40,12 @@ public class DemoController {
 
     @RequestMapping(value = "/{seq}", method = RequestMethod.PUT)
     public Demo demoModify(@PathVariable long seq, @RequestBody Demo demo) {
-        return demoService.modify(seq, demo);
+        demo.setSeq(seq);
+        return demoService.modify(demo);
     }
 
     @RequestMapping(value = "/{seq}", method = RequestMethod.DELETE)
-    public void demoDelete(@PathVariable long seq) {
-        demoService.delete(seq);
+    public long demoDelete(@PathVariable long seq) {
+        return demoService.delete(seq);
     }
 }

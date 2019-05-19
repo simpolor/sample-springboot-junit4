@@ -19,24 +19,23 @@ class DemoControllerTest {
         MockitoAnnotations.initMocks(this);
 
         // given
-        long seq = 3884;
+        long seq = 5;
 
         Demo demo = new Demo();
         demo.setSeq(seq);
-        demo.setName("진애을");
-        demo.setAge(23);
-        demo.setHobby("축구");
+        demo.setName("단순색");
+        demo.setAge(33);
 
         when(demoController.demoView(seq)).thenReturn(demo);
 
 
         // when
-        Demo result = demoController.demoView(seq);
+        Demo result = demoController.demoView(5);
 
 
         // then
         Assert.assertNotNull(result);
-        Assert.assertEquals("진애을", result.getName());
+        Assert.assertEquals("단순색", result.getName());
 
     }
 

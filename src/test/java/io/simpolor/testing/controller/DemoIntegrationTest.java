@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest // springboot 통합 테스트
 // @ActiveProfiles("local") // 환경변수에 따른 테스트
 // @Category(DemoController.class) // 테스트에 따른 분류
-class DemoControllerIntegrationTest {
+class DemoIntegrationTest {
 
     @Autowired
     private DemoController demoController;

@@ -26,21 +26,24 @@ public class DemoService {
 		return demoRepository.findAll();
 	}
 
-	public Optional<Demo> view(long seq) {
-		return demoRepository.findById(seq);
+	public Demo view(long seq) {
+		return demoRepository.findById(seq).orElse(new Demo());
 	}
 
 	public Demo write(Demo demo) {
 		return demoRepository.save(demo);
 	}
 
-	public Demo modify(long seq, Demo demo) {
-		demo.setSeq(seq);
-		return demoRepository.save(demo);
+	public Demo modify(Demo demo) {
+		if(demoRepository.findById(demo.getSeq()).isPresent()){
+			return demoRepository.save(demo);
+		}
+		return new Demo();
 	}
 
-	public void delete(long seq) {
+	public long delete(long seq) {
 		demoRepository.deleteById(seq);
+		return seq;
 	}
 
 
