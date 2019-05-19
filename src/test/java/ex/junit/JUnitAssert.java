@@ -1,4 +1,4 @@
-package junit;
+package ex.junit;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;

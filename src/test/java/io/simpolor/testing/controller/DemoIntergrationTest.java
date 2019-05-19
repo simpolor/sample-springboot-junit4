@@ -1,28 +1,28 @@
 package io.simpolor.testing.controller;
 
+import io.simpolor.testing.TestingApplication;
 import io.simpolor.testing.domain.Demo;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@ExtendWith(SpringExtension.class) //junit5 버전 사용
-@SpringBootTest // springboot 통합 테스트
+// @ExtendWith(SpringExtension.class) //junit5 버전 사용
 // @ActiveProfiles("local") // 환경변수에 따른 테스트
-// @Category(DemoController.class) // 테스트에 따른 분류
-class DemoIntegrationTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = TestingApplication.class , webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class DemoIntergrationTest {
 
     @Autowired
     private DemoController demoController;
 
     @Test
-    void demo() {
+    public void intergrationDemoTest(){
 
         // given
-        // HttpServletRequest request = mock(HttpServletRequest.class);
-        long seq = 3884;
+        long seq = 1;
 
 
         // when
@@ -31,7 +31,7 @@ class DemoIntegrationTest {
 
         // then
         Assert.assertNotNull(result);
-        Assert.assertEquals("진애을", result.getName());
+        Assert.assertEquals("단순색", result.getName());
 
     }
 
@@ -44,5 +44,4 @@ class DemoIntegrationTest {
     // public class UsableOptionDslRepositoryIntegrationTest extends IntegrationTest {
     //      {...}
     // }
-
 }

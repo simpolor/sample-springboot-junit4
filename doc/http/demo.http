@@ -9,7 +9,7 @@ GET http://127.0.0.1:8081/demo/list
 ###
 
 # demo 조회
-GET http://127.0.0.1:8081/demo/2
+GET http://127.0.0.1:8081/demo/1
 
 ###
 
@@ -18,18 +18,18 @@ POST http://127.0.0.1:8081/demo
 Content-Type: application/json
 
 {
-  "name": "박석영",
+  "name": "단순색",
   "age": 18
 }
 
 ###
 
 # demo 수정
-PUT http://127.0.0.1:8081/demo/5
+PUT http://127.0.0.1:8081/demo/1
 Content-Type: application/json
 
 {
-  "name": "박석영",
+  "name": "단순색",
   "age": 19
 }
 ###

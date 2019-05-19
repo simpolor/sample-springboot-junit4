@@ -1,4 +1,4 @@
-package junit;
+package ex.junit;
 
 // @RunWith(SpringJUnit4ClassRunner.class) //junit4 버전 사용
 // @ExtendWith(SpringExtension.class) //junit5 버전 사용
