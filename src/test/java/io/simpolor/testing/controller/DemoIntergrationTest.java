@@ -19,7 +19,7 @@ public class DemoIntergrationTest {
     private DemoController demoController;
 
     @Test
-    public void intergrationDemoTest(){
+    public void testDemoIntergration(){
 
         // given
         long seq = 1;

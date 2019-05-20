@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 // @ExtendWith(SpringExtension.class) //junit5 버전 사용
@@ -18,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureTestDatabase
 		(replace = AutoConfigureTestDatabase.Replace.NONE) // 메모리 데이터베이스가 아닌 실제 데이터베이스를 테스트하는 어노테이션
 // @MybatisTest
-class DemoRepositoryTest {
+class DemoRepositoryTest2 {
 	
 	@Autowired
 	private DemoRepository demoRepository;

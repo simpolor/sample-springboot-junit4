@@ -1,37 +1,19 @@
 package io.simpolor.testing.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.*;
 
-import io.simpolor.testing.TestingApplication;
-import io.simpolor.testing.service.DemoService;
-import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-// @RunWith(SpringJUnit4ClassRunner.class)
-//@ExtendWith(SpringExtension.class)
-// @WebMvcTest
-// @SpringBootTest // springboot 통합 테스트
-// @RunWith(SpringRunner.class)
-// @SpringBootTest(classes = DemoController.class)
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,13 +24,19 @@ class DemoWebMvcTest {
     private MockMvc mockMvc;
 
     @Test
-    public void demoMockTest() throws Exception {
+    public void testDemoView() throws Exception {
 
-        MvcResult result = this.mockMvc.perform(get("/demo/totalcount"))
-                .andDo(MockMvcResultHandlers.print())
+        MvcResult result = this.mockMvc.perform(get("/demo/50"))
+                // .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.name")
+                                .value(is(nullValue()))
+                )
                 .andReturn();
 
+        /*
         System.out.println("-- header");
         for(String header :  result.getResponse().getHeaderNames()){
             System.out.println(header+"  : "+result.getResponse().getHeader(header));
@@ -56,7 +44,25 @@ class DemoWebMvcTest {
 
         System.out.println("-- body");
         System.out.println( result.getResponse().getContentAsString());
+        */
 
+    }
+
+    @Test
+    public void testDemoList() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(get("/demo/list"))
+                .andExpect(status().isOk())
+                .andExpect(
+                        /*MockMvcResultMatchers
+                                .jsonPath("$")
+                                .value(hasSize(84))*/
+                        MockMvcResultMatchers
+                                .jsonPath("$[0].name")
+                                .value(is("지랑남"))
+
+                )
+                .andReturn();
 
     }
 

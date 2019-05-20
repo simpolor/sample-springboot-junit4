@@ -19,7 +19,7 @@ class DemoServiceTest {
     private DemoService demoService = new DemoService(demoRepository);
 
     @Test
-    void demoTotalcountTest() {
+    void testDemoTotalcount() {
 
         // given
         long totalcount = 3;
@@ -36,7 +36,7 @@ class DemoServiceTest {
     }
 
     @Test
-    void demoViewTest() {
+    void testDemoView() {
 
         // given
         long seq = 1;

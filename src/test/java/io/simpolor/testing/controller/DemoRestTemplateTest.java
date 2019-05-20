@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HttpRequestTest {
+public class DemoRestTemplateTest {
 
     @LocalServerPort
     private int port;
@@ -23,14 +23,16 @@ public class HttpRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void demoTotalcountTest(){
+    public void testDemoView(){
 
-        ResponseEntity<Demo> response = restTemplate.getForEntity("/demo/1", Demo.class);
+        System.out.println("port : " + port);
+
+        ResponseEntity<Demo> response = restTemplate.getForEntity(
+                "http://localhost:"+port+"/demo/1", Demo.class
+        );
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(response.getBody()).isNotNull();
-
-        System.out.println("port : "+port);
-
+        // Assertions.assertThat(response.getBody().getName()).isNotNull();
     }
 
 }

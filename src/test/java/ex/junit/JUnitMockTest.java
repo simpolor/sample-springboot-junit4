@@ -39,7 +39,7 @@ public class JUnitMockTest {
     DemoController demoController;
 
     @Test
-    public void demoMockTest() {
+    public void testDemoMoc() {
 
         // given
         long seq = 1;
@@ -60,7 +60,7 @@ public class JUnitMockTest {
     }
 
     @Test
-    public void mockSpyTest(){
+    public void testMockSpy(){
 
         Demo demo = spy(Demo.class);
 
@@ -69,7 +69,7 @@ public class JUnitMockTest {
     }
 
     @Test
-    public void demoWhenThenReturnTest() {
+    public void testDemoWhenThenReturn() {
 
         // given
         long seq = 1;
@@ -91,7 +91,7 @@ public class JUnitMockTest {
     }
 
     @Test
-    public void demoDoNotingTest() {
+    public void testDemoDoNoting() {
 
         Demo demo = mock(Demo.class);
 
@@ -103,7 +103,7 @@ public class JUnitMockTest {
 
 
     @Test
-    public void mockVerifyTest(){
+    public void testMockVerify(){
 
         Demo demo = mock(Demo.class);
         String name = "SIMPOLOR";
@@ -134,7 +134,7 @@ public class JUnitMockTest {
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void demoThrowTest() {
+    public void testDemoThrow() {
 
         long seq = 1;
         MockitoAnnotations.initMocks(this);

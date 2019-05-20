@@ -3,8 +3,7 @@ package io.simpolor.testing.controller;
 import io.simpolor.testing.domain.Demo;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import static org.mockito.Mockito.when;
 
@@ -14,7 +13,7 @@ class DemoControllerTest {
     DemoController demoController;
 
     @Test
-    public void demoTest() {
+    public void testDemo() {
 
         MockitoAnnotations.initMocks(this);
 

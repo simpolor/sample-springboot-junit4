@@ -1,5 +1,10 @@
 package ex.junit;
 
+import io.simpolor.testing.controller.DemoController;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
 // @RunWith(SpringJUnit4ClassRunner.class) //junit4 버전 사용
 // @ExtendWith(SpringExtension.class) //junit5 버전 사용
 // @SuiteClasses({}) // 여러 클래스와 함께 단위 테스트하는 어노테이션
@@ -14,7 +19,41 @@ package ex.junit;
 // @JsonTest // json을 쉽게 serialize, deserialize를 테스트할 수 있게 도와주는 어노테이션
 // @WebMvcTest // webmvc를 테스트할 수 있는 어노테이션
 // @RestClientTest // 외부에서 어떤 Rest API를 호출할 때 mock 대신에 대체할 수 았는 테스트 어노테이션
-// @TestPropertySource // Properties 파일을 읽어오기 위한 어노테이션
+// @TestPropertySource(properties = "server.port=8081") // Properties 파일을 읽어오기 위한 어노테이션
+// @SpringBootTest(classes = {DemoController.class})
+// @SpringBootTest(properties = "application.yml")
+// @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// @ActiveProfiles
+// @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JUnitAnnotationTest {
 
+    @Test // 가장 기본이 되는 테스트 어노테이션
+    public void testDefault(){
+        System.out.println("Test default");
+    }
+
+    @Test(timeout = 3000) // 시간초과에 대한 어노테이션
+    public void testTimeout() throws InterruptedException{
+        Thread.sleep(300);
+        System.out.println("Test timeout");
+    }
+
+    @Test(expected = NullPointerException.class) // 기대한 예외에 대한 어노테이션
+    public void testExpected() {
+        System.out.println("Test expected");
+        // throw new NullPointerException();
+        throw new RuntimeException();
+    }
+
+    @Test
+    @Ignore // 해당 테스트를 결과를 무시하는 어노테이션
+    public void testIgnore(){
+        System.out.println("Test ignore");
+    }
+
+    @Test
+    @Ignore(value = "테스트 대상이 아님")
+    public void testIgnoreValue(){
+        System.out.println("Test ignore value");
+    }
 }
