@@ -31,8 +31,6 @@ public class DemoIntergrationTest {
 
         // then
         Assert.assertNotNull(result);
-        Assert.assertEquals("단순색", result.getName());
-
     }
 
     // 단위 테스트 작성 시..

@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.repository.DemoRepository;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import reflection.DemoReflection;
 
@@ -19,7 +19,7 @@ public class DemoServiceTest {
     private DemoService demoService = new DemoService(demoRepository);
 
     @Test
-    void testDemoTotalcount() {
+   public void testDemoTotalcount() {
 
         // given
         long totalcount = 3;
@@ -36,23 +36,23 @@ public class DemoServiceTest {
     }
 
     @Test
-    void testDemoView() {
+    public void testDemoView() {
 
         // given
         long seq = 1;
 
-        Demo demoReflection = DemoReflection.exampleDemoResult(seq, "test", 19);
-        Optional<Demo> spy = Optional.ofNullable(demoReflection);
+        Demo demo = DemoReflection.exampleDemoResult(seq, "test", 19);
+        Optional<Demo> spy = Optional.ofNullable(demo);
         when(demoRepository.findById(anyLong())).thenReturn(spy);
 
 
         // when
-        Demo demo = demoService.view(seq);
+        Demo result = demoService.view(seq);
 
 
         // then
-        Assert.assertNotNull(demo);
-        Assert.assertEquals(1, demo.getSeq());
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.getSeq());
 
     }
 }

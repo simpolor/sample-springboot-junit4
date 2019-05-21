@@ -1,21 +1,25 @@
 package io.simpolor.testing.repository;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.*;
 
 import static org.mockito.Mockito.when;
 
-class DemoRepositoryMockTest {
+public class DemoRepositoryMockTest {
 
 	@Mock
 	private DemoRepository demoRepository;
-	
+
+	@Before
+	public void setUp(){
+		MockitoAnnotations.initMocks(this);
+	}
+
+
 	@Test
 	public void testSelectDemoTotalcount() {
-
-		MockitoAnnotations.initMocks(this);
 
 		// given
 		long reuturnValue = 3L;
