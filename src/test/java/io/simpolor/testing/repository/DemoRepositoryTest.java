@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureTestDatabase
 		(replace = AutoConfigureTestDatabase.Replace.NONE) // 메모리 데이터베이스가 아닌 실제 데이터베이스를 테스트하는 어노테이션
 // @MybatisTest
-class DemoRepositoryTest {
+public class DemoRepositoryTest {
 	
 	@Autowired
 	private DemoRepository demoRepository;

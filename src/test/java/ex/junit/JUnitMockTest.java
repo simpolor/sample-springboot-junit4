@@ -45,7 +45,9 @@ public class JUnitMockTest {
         long seq = 1;
 
         // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
+        // InjectMocks을 사용하기 위한 작업
         MockitoAnnotations.initMocks(this);
+
         Demo givenSuccessDemoResult = DemoReflection.exampleDemoResult(1, "test", 19);
 
         when(demoService.view(anyLong())).thenReturn(givenSuccessDemoResult);

@@ -13,7 +13,7 @@ import reflection.DemoReflection;
 
 import java.util.Optional;
 
-class DemoServiceTest {
+public class DemoServiceTest {
 
     private DemoRepository demoRepository = mock(DemoRepository.class);
     private DemoService demoService = new DemoService(demoRepository);

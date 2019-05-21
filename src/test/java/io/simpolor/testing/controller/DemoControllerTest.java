@@ -7,7 +7,7 @@ import org.mockito.*;
 
 import static org.mockito.Mockito.when;
 
-class DemoControllerTest {
+public class DemoControllerTest {
 
     @Mock
     DemoController demoController;

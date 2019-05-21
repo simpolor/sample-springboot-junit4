@@ -1,68 +1,45 @@
 package io.simpolor.testing.controller;
 
+import io.simpolor.testing.service.DemoService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.hamcrest.Matchers.*;
 
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-class DemoWebMvcTest {
+@WebMvcTest
+// @WebMvcTest(controllers = {DemoController.class}) // 특정 컨트롤러만 로드
+public class DemoWebMvcTest {
 
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    private DemoService demoService;
+
     @Test
-    public void testDemoView() throws Exception {
+    public void testDemoTotalcount() throws Exception {
 
-        MvcResult result = this.mockMvc.perform(get("/demo/50"))
-                // .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andExpect(
-                        MockMvcResultMatchers
-                                .jsonPath("$.name")
-                                .value(is(nullValue()))
-                )
-                .andReturn();
+        when(demoService.totalcount()).thenReturn(15L);
 
-        /*
-        System.out.println("-- header");
-        for(String header :  result.getResponse().getHeaderNames()){
-            System.out.println(header+"  : "+result.getResponse().getHeader(header));
-        }
-
-        System.out.println("-- body");
-        System.out.println( result.getResponse().getContentAsString());
-        */
+        this.mockMvc.perform(get("/demo/totalcount"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk());
 
     }
 
     @Test
-    public void testDemoList() throws Exception {
+    public void testDemo2Totalcount() throws Exception {
 
-        MvcResult result = this.mockMvc.perform(get("/demo/list"))
-                .andExpect(status().isOk())
-                .andExpect(
-                        /*MockMvcResultMatchers
-                                .jsonPath("$")
-                                .value(hasSize(84))*/
-                        MockMvcResultMatchers
-                                .jsonPath("$[0].name")
-                                .value(is("지랑남"))
+        when(demoService.totalcount()).thenReturn(15L);
 
-                )
-                .andReturn();
+        this.mockMvc.perform(get("/demo2/totalcount"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk());
 
     }
 
