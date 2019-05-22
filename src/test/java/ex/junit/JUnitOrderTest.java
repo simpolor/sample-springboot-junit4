@@ -9,22 +9,22 @@ import org.junit.Test;
 public class JUnitOrderTest {
 
 	@BeforeClass
-	public static void setUpBeforeClass()  {
+	public static void setupBeforeClass()  {
 		System.out.println("> @BeforeClass");
 	}
 
 	@AfterClass
-	public static void tearDownAfterClass() {
+	public static void teardownAfterClass() {
 		System.out.println("> @AfterClass");
 	}
 
 	@Before
-	public void setUp() {
+	public void setup() {
 		System.out.println(">> @Before");
 	}
 
 	@After
-	public void tearDown() {
+	public void teardown() {
 		System.out.println(">> @After");
 	}
 

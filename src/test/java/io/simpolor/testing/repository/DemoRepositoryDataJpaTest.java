@@ -2,8 +2,7 @@ package io.simpolor.testing.repository;
 
 import io.simpolor.testing.TestingApplication;
 import io.simpolor.testing.domain.Demo;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,7 +23,7 @@ public class DemoRepositoryDataJpaTest {
 	
 	@Autowired
 	private DemoRepository demoRepository;
-	
+
 	@Test
 	public void testDemoCount() {
 

@@ -11,8 +11,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
-// @WebMvcTest(controllers = {DemoController.class}) // 특정 컨트롤러만 로드
+// @WebMvcTest
+@WebMvcTest(controllers = {DemoController.class}) // 특정 컨트롤러만 로드
 public class DemoWebMvcTest {
 
     @Autowired
@@ -27,17 +27,6 @@ public class DemoWebMvcTest {
         when(demoService.totalcount()).thenReturn(15L);
 
         this.mockMvc.perform(get("/demo/totalcount"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk());
-
-    }
-
-    @Test
-    public void testDemo2Totalcount() throws Exception {
-
-        when(demoService.totalcount()).thenReturn(15L);
-
-        this.mockMvc.perform(get("/demo2/totalcount"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
 

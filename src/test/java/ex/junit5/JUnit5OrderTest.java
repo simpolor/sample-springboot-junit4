@@ -9,22 +9,22 @@ import org.junit.jupiter.api.Test;
 public class JUnit5OrderTest {
 
     @BeforeAll
-    public static void setUpBeforeClass() {
+    public static void setupBeforeClass() {
         System.out.println("> @BeforeAll");
     }
 
     @AfterAll
-    public static void tearDownAfterClass() {
+    public static void teardownAfterClass() {
         System.out.println("> @AfterAll");
     }
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         System.out.println(">> @BeforeEach");
     }
 
     @AfterEach
-    public void tearDown() {
+    public void teardown() {
         System.out.println(">> @AfterEach");
     }
 
