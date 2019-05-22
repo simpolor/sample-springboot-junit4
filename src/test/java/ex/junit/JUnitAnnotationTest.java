@@ -3,6 +3,7 @@ package ex.junit;
 import io.simpolor.testing.controller.DemoController;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.boot.test.context.SpringBootTest;
 
 // @RunWith(SpringJUnit4ClassRunner.class) //junit4 버전 사용
@@ -55,5 +56,11 @@ public class JUnitAnnotationTest {
     @Ignore(value = "테스트 대상이 아님")
     public void testIgnoreValue(){
         System.out.println("Test ignore value");
+    }
+
+    @Test
+    @DisplayName("디스플레이 이름")
+    public void testDisplayName(){
+        System.out.println("Test display name");
     }
 }
