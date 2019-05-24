@@ -1,17 +1,20 @@
 package io.simpolor.testing.service;
 
-import io.simpolor.testing.domain.Demo;
+import io.simpolor.testing.domain.*;
 import io.simpolor.testing.repository.DemoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
 public class DemoService {
+
+	@Autowired
+	private ApplicationEventPublisher publisher;
 
 	private DemoRepository demoRepository;
 	public DemoService(@Autowired DemoRepository demoRepository){
@@ -31,10 +34,15 @@ public class DemoService {
 	}
 
 	public Demo write(Demo demo) {
+
+		publisher.publishEvent(DemoEvent.of(demo.getName(), demo.getAge(), DemoState.INSERT));
+
 		return demoRepository.save(demo);
 	}
 
 	public Demo modify(Demo demo) {
+
+		publisher.publishEvent(DemoEvent.of(demo.getName(), demo.getAge(), DemoState.UPDATE));
 		if(demoRepository.findById(demo.getSeq()).isPresent()){
 			return demoRepository.save(demo);
 		}
@@ -42,7 +50,13 @@ public class DemoService {
 	}
 
 	public long delete(long seq) {
-		demoRepository.deleteById(seq);
+
+		Demo demo = demoRepository.findById(seq).get();
+		if(demo != null){
+			publisher.publishEvent(DemoEvent.of(demo.getName(), demo.getAge(), DemoState.DELETE));
+			demoRepository.deleteById(seq);
+		}
+
 		return seq;
 	}
 

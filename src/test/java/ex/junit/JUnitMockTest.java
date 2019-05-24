@@ -1,19 +1,10 @@
 package ex.junit;
 
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.atMost;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +16,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.Answer;
 import reflection.DemoReflection;
 
 public class JUnitMockTest {
@@ -86,6 +78,38 @@ public class JUnitMockTest {
 
         // when
         Demo result = demoController.demoView(seq);
+
+
+        // than
+        Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void testDoAnswer(){
+
+        // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
+        MockitoAnnotations.initMocks(this);
+
+        // 파라미터를 그대로 리턴하기 위한 구문
+        doAnswer((Answer) invocation -> {
+            Object arg0 = invocation.getArgument(0);
+            long seq = (Long)arg0;
+
+            Demo demo = new Demo();
+            demo.setSeq(seq);
+            demo.setName("단순색");
+            demo.setAge(23);
+
+            return demo;
+        }).when(demoService).view(anyLong());
+
+        // given
+        long seq = 5;
+
+
+        // when
+        Demo result = demoController.demoView(seq);
+        System.out.println("result : "+result.toString());
 
 
         // than
