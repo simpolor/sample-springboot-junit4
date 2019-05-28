@@ -13,7 +13,7 @@ public class DemoControllerTest {
     DemoController demoController;
 
     @Test
-    public void testDemo() {
+    public void testDemoView() {
 
         MockitoAnnotations.initMocks(this);
 
