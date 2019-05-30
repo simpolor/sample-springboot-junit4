@@ -1,4 +1,4 @@
-package ex.hamcrest;
+package example.hamcrest;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;

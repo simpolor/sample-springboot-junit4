@@ -1,4 +1,4 @@
-package ex.junit;
+package example.junit;
 
 import org.junit.After;
 import org.junit.AfterClass;

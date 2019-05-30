@@ -1,10 +1,8 @@
-package ex.junit;
+package example.junit;
 
-import io.simpolor.testing.controller.DemoController;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.boot.test.context.SpringBootTest;
 
 // @RunWith(SpringJUnit4ClassRunner.class) //junit4 버전 사용
 // @ExtendWith(SpringExtension.class) //junit5 버전 사용

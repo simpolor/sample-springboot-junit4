@@ -1,25 +1,22 @@
-package ex.junit;
-
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
-
-import javax.servlet.http.HttpServletRequest;
+package example.junit;
 
 import io.simpolor.testing.controller.DemoController;
 import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.service.DemoService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.mockito.stubbing.Answer;
 import reflection.DemoReflection;
 
-public class JUnitMockTest {
+import javax.servlet.http.HttpServletRequest;
+
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
+
+public class JUnitDemoTest {
 
     @Mock
     HttpServletRequest request;
@@ -31,7 +28,7 @@ public class JUnitMockTest {
     DemoController demoController;
 
     @Test
-    public void testDemoMoc() {
+    public void testDemoMock() {
 
         // given
         long seq = 1;
@@ -42,6 +39,7 @@ public class JUnitMockTest {
 
         Demo givenSuccessDemoResult = DemoReflection.exampleDemoResult(1, "test", 19);
 
+        // stubbing
         when(demoService.view(anyLong())).thenReturn(givenSuccessDemoResult);
 
 
@@ -54,7 +52,7 @@ public class JUnitMockTest {
     }
 
     @Test
-    public void testMockSpy(){
+    public void testDemoSpy(){
 
         Demo demo = spy(Demo.class);
 
@@ -85,7 +83,7 @@ public class JUnitMockTest {
     }
 
     @Test
-    public void testDoAnswer(){
+    public void testDemoDoAnswer(){
 
         // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
         MockitoAnnotations.initMocks(this);
@@ -129,7 +127,7 @@ public class JUnitMockTest {
 
 
     @Test
-    public void testMockVerify(){
+    public void testDemoVerify(){
 
         Demo demo = mock(Demo.class);
         String name = "SIMPOLOR";
@@ -172,5 +170,4 @@ public class JUnitMockTest {
 
         Assert.assertNotNull(result);
     }
-
 }
