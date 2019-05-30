@@ -5,13 +5,13 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 import io.simpolor.testing.domain.Demo;
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.*;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
+import static org.mockito.Mockito.*;
 
 public class JUnitMockTest {
 
@@ -109,4 +109,26 @@ public class JUnitMockTest {
         doReturn("foo").when(spy).get(0);
     }
 
+    @Test
+    public void testInvocation() {
+
+        Map<String, String> mock = mock(Map.class);
+
+        when(mock.get(anyString())).thenAnswer(
+                invocation -> invocation.getArgument(0));
+
+        Assert.assertEquals("someString", mock.get("someString"));
+        Assert.assertEquals("anotherString", mock.get("anotherString"));
+    }
+
+    @Test
+    public void testArgumentCaptor() {
+
+        List mock = mock(List.class);
+        mock.addAll(Arrays.asList("one", "two"));  // false
+
+        ArgumentCaptor<List> argument = ArgumentCaptor.forClass(List.class);
+        verify(mock).addAll(argument.capture());
+        Assert.assertTrue(argument.getValue().size() == 2);
+    }
 }
