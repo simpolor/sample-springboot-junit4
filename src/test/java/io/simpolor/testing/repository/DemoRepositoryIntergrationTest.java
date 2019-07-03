@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.lessThan;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestingApplication.class)
 public class DemoRepositoryIntergrationTest {
-	
+
 	@Autowired
 	private DemoRepository demoRepository;
 	
