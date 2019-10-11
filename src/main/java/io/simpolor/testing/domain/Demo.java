@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Demo {
 
 	@Id
