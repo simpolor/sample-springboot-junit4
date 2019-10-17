@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +20,21 @@ public class DemoService {
 	private DemoRepository demoRepository;
 	public DemoService(@Autowired DemoRepository demoRepository){
 		this.demoRepository = demoRepository;
+	}
+
+	private long visit;
+
+	@PostConstruct
+	public void DemoService(){
+		this.visit = 10;
+	}
+
+	public void setVisit(long visit) {
+		this.visit = visit;
+	}
+
+	public long getVisit() {
+		return this.visit;
 	}
 
 	public long totalcount() {

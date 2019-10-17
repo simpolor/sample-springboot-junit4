@@ -14,6 +14,7 @@ import java.util.List;
 public class DemoTwoController {
 
     private DemoService demoService;
+
     public DemoTwoController(@Autowired DemoService demoService){
         this.demoService = demoService;
     }
