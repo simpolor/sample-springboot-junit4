@@ -22,6 +22,28 @@ public class DemoMockMvcTest {
     @Test
     public void testDemoView() throws Exception {
 
+        MvcResult result = this.mockMvc.perform(get("/demo/1"))
+                // .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.name")
+                                .value(is("하니"))
+                )
+                .andReturn();
+
+        System.out.println("-- header");
+        for(String header :  result.getResponse().getHeaderNames()){
+            System.out.println(header+"  : "+result.getResponse().getHeader(header));
+        }
+
+        System.out.println("-- body");
+        System.out.println( result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testDemoViewByNull() throws Exception {
+
         MvcResult result = this.mockMvc.perform(get("/demo/50"))
                 // .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
@@ -31,17 +53,6 @@ public class DemoMockMvcTest {
                                 .value(is(nullValue()))
                 )
                 .andReturn();
-
-        /*
-        System.out.println("-- header");
-        for(String header :  result.getResponse().getHeaderNames()){
-            System.out.println(header+"  : "+result.getResponse().getHeader(header));
-        }
-
-        System.out.println("-- body");
-        System.out.println( result.getResponse().getContentAsString());
-        */
-
     }
 
     @Test
@@ -55,7 +66,7 @@ public class DemoMockMvcTest {
                                 .value(hasSize(84))*/
                         MockMvcResultMatchers
                                 .jsonPath("$[0].name")
-                                .value(is("지랑남"))
+                                .value(is("하니"))
 
                 )
                 .andReturn();

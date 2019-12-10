@@ -3,6 +3,7 @@ package io.simpolor.testing.controller;
 import io.simpolor.testing.TestingApplication;
 import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.service.DemoService;
+import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +11,20 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.method.HandlerMethod;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -79,6 +88,40 @@ public class DemoWebMvcTest {
     }
 
     @Test
+    public void testDemoList() throws Exception {
+
+        // given
+        List<Demo> demoList = new ArrayList<>();
+        demoList.add(new Demo(1, "홍길동", 15));
+        demoList.add(new Demo(2, "김철수", 19));
+        demoList.add(new Demo(3, "김영희", 17));
+        demoList.add(new Demo(4, "단순색", 32));
+
+        when(demoService.list()).thenReturn(demoList);
+
+        // when, than
+        this.mockMvc.perform(
+                get("/demo/list")
+                .header("Accept-Language", "ko-KR")
+
+        )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$")
+                                .value(hasSize(4))
+                )
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$[0].seq")
+                                .value(is(1))
+                )
+                .andReturn();
+
+    }
+
+    @Test
     public void testDemoView() throws Exception {
 
         // given
@@ -111,22 +154,17 @@ public class DemoWebMvcTest {
 
     }
 
-    /*@Test
-    public void testDemoList() throws Exception {
+    @Test
+    public void testDemoInterceptor() throws Exception {
 
-        MvcResult result = this.mockMvc.perform(get("/demo/list"))
-                .andExpect(status().isOk())
-                .andExpect(
-                        *//*MockMvcResultMatchers
-                                .jsonPath("$")
-                                .value(hasSize(84))*//*
-                        MockMvcResultMatchers
-                                .jsonPath("$[0].name")
-                                .value(is("지랑남"))
+        // Method method = TestInternalController.class.getMethod("testMethod");
+        // TestInternalController controller = new TestInternalController();
+        // HandlerMethod handlerMethod = new HandlerMethod(controller, method);
 
-                )
-                .andReturn();
+        // MockHttpServletRequest request = new MockHttpServletRequest();
+        // MockHttpServletResponse response = new MockHttpServletResponse();
 
-    }*/
+        // val actual = interceptor.preHandle(request, response, handlerMethod);
+    }
 
 }

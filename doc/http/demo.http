@@ -1,20 +1,20 @@
 # demo 전체 카운트
-GET http://127.0.0.1:8081/demo/totalcount
+GET http://127.0.0.1:8080/demo/totalcount
 
 ###
 
 # demo 리스트
-GET http://127.0.0.1:8081/demo/list
+GET http://127.0.0.1:8080/demo/list
 
 ###
 
 # demo 조회
-GET http://127.0.0.1:8081/demo/1
+GET http://127.0.0.1:8080/demo/1
 
 ###
 
 # demo 등록
-POST http://127.0.0.1:8081/demo
+POST http://127.0.0.1:8080/demo
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 ###
 
 # demo 수정
-PUT http://127.0.0.1:8081/demo/3894
+PUT http://127.0.0.1:8080/demo/3
 Content-Type: application/json
 
 {
@@ -35,6 +35,6 @@ Content-Type: application/json
 ###
 
 # demo 삭제
-DELETE http://127.0.0.1:8081/demo/3
+DELETE http://127.0.0.1:8080/demo/3
 
 ###

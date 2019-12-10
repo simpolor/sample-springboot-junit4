@@ -40,8 +40,8 @@ public class JUnitAnnotationTest {
     @Test(expected = NullPointerException.class) // 기대한 예외에 대한 어노테이션
     public void testExpected() {
         System.out.println("Test expected");
-        // throw new NullPointerException();
-        throw new RuntimeException();
+        throw new NullPointerException();
+        //throw new RuntimeException();
     }
 
     @Test

@@ -55,4 +55,5 @@ public class DemoServiceTest {
         Assert.assertEquals(1, result.getSeq());
 
     }
+
 }

@@ -1,12 +1,23 @@
 package io.simpolor.testing.service;
 
+import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.repository.DemoRepository;
 import org.junit.*;
 import org.mockito.*;
+import org.springframework.context.ApplicationEventPublisher;
 
+import java.util.*;
+
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class DemoServiceInjectMocksTest {
+
+    @Mock
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    @Captor
+    protected ArgumentCaptor<Object> publishEventCaptor;
 
     @Mock
     private DemoRepository demoRepository;
@@ -29,15 +40,36 @@ public class DemoServiceInjectMocksTest {
     public void testDemoTotalcount() {
 
         // given
-        long reuturnValue = 3L;
-        when(demoRepository.count()).thenReturn(reuturnValue);
+        long returnValue = 3L;
+        when(demoRepository.count()).thenReturn(returnValue);
 
         // when
-        long result = demoService.totalcount();
+        long actual = demoService.totalcount();
 
 
         // then
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3L, result);
+        Assert.assertNotNull(actual);
+        Assert.assertEquals(3L, actual);
     }
+
+    @Test
+    public void testDemoList() {
+
+        // given
+        List<Demo> list = new ArrayList<>();
+        list.add(new Demo(1, "김영희", 17));
+        list.add(new Demo(2, "김철수", 18));
+        when(demoRepository.findAll()).thenReturn(list);
+
+
+        // when
+        List<Demo> actual = demoService.list();
+
+
+        // then
+        Assert.assertNotNull(actual);
+        Assert.assertEquals(2L, actual.size());
+    }
+
+
 }
