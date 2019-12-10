@@ -6,20 +6,28 @@ import static org.mockito.Mockito.when;
 
 import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.repository.DemoRepository;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 
+import org.mockito.*;
 import reflection.DemoReflection;
 
 import java.util.Optional;
 
 public class DemoServiceTest {
 
-    private DemoRepository demoRepository = mock(DemoRepository.class);
-    private DemoService demoService = new DemoService(demoRepository);
+    @Mock
+    private DemoRepository demoRepository;
+
+    @InjectMocks
+    private DemoService demoService;
+
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
-   public void testDemoTotalcount() {
+    public void testDemoTotalcount() {
 
         // given
         long totalcount = 3;

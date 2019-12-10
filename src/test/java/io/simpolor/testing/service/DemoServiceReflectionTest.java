@@ -1,18 +1,25 @@
 package io.simpolor.testing.service;
 
 import io.simpolor.testing.repository.DemoRepository;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
+import org.mockito.*;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.lang.reflect.Field;
 
-import static org.mockito.Mockito.mock;
 
 public class DemoServiceReflectionTest {
 
-    private DemoRepository demoRepository = mock(DemoRepository.class);
-    private DemoService demoService = new DemoService(demoRepository);
+    @Mock
+    private DemoRepository demoRepository;
+
+    @InjectMocks
+    private DemoService demoService;
+
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testViewsByDeclare() throws NoSuchFieldException, IllegalAccessException {
@@ -21,7 +28,7 @@ public class DemoServiceReflectionTest {
         long visit = 30L;
         demoService.setVisit(visit);
 
-        Field field = new DemoService(demoRepository).getClass().getDeclaredField("visit");
+        Field field = new DemoService().getClass().getDeclaredField("visit");
         field.setAccessible(true);
 
         long result = (long)field.get(demoService);

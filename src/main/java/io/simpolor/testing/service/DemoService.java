@@ -17,10 +17,8 @@ public class DemoService {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	@Autowired
 	private DemoRepository demoRepository;
-	public DemoService(@Autowired DemoRepository demoRepository){
-		this.demoRepository = demoRepository;
-	}
 
 	private long visit;
 

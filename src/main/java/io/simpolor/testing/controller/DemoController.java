@@ -13,6 +13,10 @@ import java.util.List;
 @RequestMapping("/demo")
 public class DemoController {
 
+    /**
+     * 생성자 주입 방식과 Autowired는 동시에 사용할 수 있으나,
+     * 테스트할 경우 둘중 하나만 적용이 된다.
+     */
     private DemoService demoService;
     public DemoController(@Autowired DemoService demoService){
         this.demoService = demoService;

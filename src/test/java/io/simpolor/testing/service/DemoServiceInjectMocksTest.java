@@ -8,7 +8,6 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.*;
 
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class DemoServiceInjectMocksTest {
