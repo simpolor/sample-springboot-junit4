@@ -1,5 +1,6 @@
 package io.simpolor.testing.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.simpolor.testing.TestingApplication;
 import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.service.DemoService;
@@ -11,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -28,6 +30,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -152,6 +155,42 @@ public class DemoWebMvcTest {
         System.out.println( result.getResponse().getContentAsString());
         */
 
+    }
+
+    @Test
+    public void testDemoPost() throws Exception {
+
+        // given
+        long seq = 50L;
+        Demo demo = new Demo(seq, "sypark", 15);
+
+        when(demoService.write(demo)).thenReturn(demo);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(demo);
+
+        // when
+        this.mockMvc.perform(post("/demo")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                //.andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.seq")
+                                .value(is(50))
+                )
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.name")
+                                .value(is("sypark"))
+                )
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.age")
+                                .value(is(15))
+                )
+                .andReturn();
     }
 
     @Test
