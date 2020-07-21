@@ -34,7 +34,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes={TestingApplication.class})
 @WebMvcTest(controllers = {DemoController.class})
 public class DemoWebMvcTest {
 
