@@ -28,7 +28,7 @@ import org.junit.Test;
 public class HamcrestTest {
 
 	@Test
-	public void hamcrestIsTest() throws Exception {
+	public void testIs() {
 		Demo demo = new Demo();
 		demo.setName("John");
 		
@@ -40,7 +40,7 @@ public class HamcrestTest {
 	}
 
 	@Test
-	public void hamcrestisEqualToTest() throws Exception {
+	public void testEqualTo() {
 		Demo demo = new Demo();
 		demo.setAge(16);
 		
@@ -51,7 +51,7 @@ public class HamcrestTest {
 	}
 
 	@Test
-	public void hamcrestNullTest() {
+	public void testNullValue() {
 	    String str = null;
 
         // is는 기준 값과 결과가 일치해야 성공
@@ -59,13 +59,13 @@ public class HamcrestTest {
 	}
 
 	@Test
-	public void hamcrestNotNullTest() {
+	public void testNotNullValue() {
 	    String str = "hamcrest";
 	    assertThat(str, is(notNullValue()));
 	}
 
 	@Test
-	public void hamcrestNotTest() {
+	public void testNot() {
 	    String str = null;
 
         // not는 기준 값과 결과가 일치하지 않아야 성공
@@ -73,7 +73,7 @@ public class HamcrestTest {
 	}
 	
 	@Test
-	public void hamcrestInstanceOfTest() {
+	public void testInstanceOf() {
 	    Map<String, String> map = new HashMap<>();
 
         // instance가 동일해야 성공
@@ -81,7 +81,7 @@ public class HamcrestTest {
 	}
 
     @Test
-	public void hamcrestNumbersTest() {
+	public void testOperations() {
         // 크다.
 		assertThat(2, greaterThan(1));
 
@@ -103,7 +103,7 @@ public class HamcrestTest {
 	}
 
 	@Test
-	public void hamcrestPropertyTest() {
+	public void testHasProperty() {
         // setMyProperty Method가 존재해야 성공 ( 변수명은 영향을 끼치지 않음 )
 	    assertThat(this, hasProperty("myProperty"));
 	}
@@ -111,7 +111,7 @@ public class HamcrestTest {
 	// ---------------------------------------------------------
 	
 	@Test
-	public void hamcrestCollectionTest() {
+	public void testIsMapContaining() {
 
 	    Map<String, String> map = new HashMap<>();
 	    map.put("foo1", "bar1");
@@ -130,7 +130,7 @@ public class HamcrestTest {
 	// ---------------------------------------------------------
 	
 	@Test
-	public void hamcrestTextTest() {
+	public void testContainsString() {
 
 	    String actual = "Spring";
         String actual2 = "Spring Framework 3.2";
