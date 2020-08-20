@@ -3,14 +3,15 @@ package io.simpolor.testing.controller;
 import io.simpolor.testing.domain.Demo;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.when;
 
 public class DemoControllerTest {
 
     @Mock
-    DemoController demoController;
+    private DemoController demoController;
 
     @Test
     public void testDemoView() {

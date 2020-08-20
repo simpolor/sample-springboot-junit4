@@ -1,30 +1,30 @@
 package io.simpolor.testing.service;
 
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import io.simpolor.testing.domain.Demo;
 import io.simpolor.testing.repository.DemoRepository;
-import org.junit.*;
-
-import org.mockito.*;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 import reflection.DemoReflection;
 
 import java.util.Optional;
 
-public class DemoServiceTest {
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
+public class DemoServiceMockitoTest {
 
     @Mock
     private DemoRepository demoRepository;
 
     @InjectMocks
     private DemoService demoService;
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void testDemoTotalcount() {

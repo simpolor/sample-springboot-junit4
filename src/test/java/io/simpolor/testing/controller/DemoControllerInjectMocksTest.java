@@ -19,7 +19,7 @@ public class DemoControllerInjectMocksTest {
     private DemoController demoController;
 
     @Before
-    public void initMocks() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 

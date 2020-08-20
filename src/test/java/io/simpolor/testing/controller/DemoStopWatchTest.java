@@ -21,7 +21,7 @@ public class DemoStopWatchTest {
     private DemoController demoController;
 
     @Before
-    public void setUp() {
+    public void setup() {
         stopWatch = new StopWatch("simpolor");
     }
 

@@ -15,7 +15,7 @@ public class DemoServiceVoidTest {
     private DemoService demoService;
 
     @Before
-    public void initMocks() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 

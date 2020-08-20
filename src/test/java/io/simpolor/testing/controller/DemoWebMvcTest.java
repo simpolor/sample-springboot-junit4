@@ -44,7 +44,7 @@ public class DemoWebMvcTest {
     private MockMvc mockMvc;
 
     @Before
-    public void setUp() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
