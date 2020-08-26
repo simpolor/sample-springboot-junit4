@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.simpolor</groupId>
-    <artifactId>testing</artifactId>
+    <artifactId>test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>testing</name>
+    <name>sample-springboot-test</name>
     <description>Testing project for Spring Boot</description>
 
     <properties>

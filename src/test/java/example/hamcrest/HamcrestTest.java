@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.simpolor.testing.domain.Demo;
+import io.simpolor.test.domain.Demo;
 import org.hamcrest.collection.IsMapContaining;
 import org.junit.Test;
 

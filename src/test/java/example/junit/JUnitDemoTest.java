@@ -1,8 +1,8 @@
 package example.junit;
 
-import io.simpolor.testing.controller.DemoController;
-import io.simpolor.testing.domain.Demo;
-import io.simpolor.testing.service.DemoService;
+import io.simpolor.test.controller.DemoController;
+import io.simpolor.test.domain.Demo;
+import io.simpolor.test.service.DemoService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.*;

@@ -1,6 +1,6 @@
 package reflection;
 
-import io.simpolor.testing.domain.Demo;
+import io.simpolor.test.domain.Demo;
 import org.springframework.test.util.ReflectionTestUtils;
 
 public class DemoReflection {
