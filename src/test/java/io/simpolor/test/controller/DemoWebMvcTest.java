@@ -168,21 +168,9 @@ public class DemoWebMvcTest {
                 .content(json))
                 //.andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect(
-                        MockMvcResultMatchers
-                                .jsonPath("$.seq")
-                                .value(is(50))
-                )
-                .andExpect(
-                        MockMvcResultMatchers
-                                .jsonPath("$.name")
-                                .value(is("sypark"))
-                )
-                .andExpect(
-                        MockMvcResultMatchers
-                                .jsonPath("$.age")
-                                .value(is(15))
-                )
+                .andExpect(MockMvcResultMatchers.jsonPath("$.seq").value(is(50)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(is("sypark")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(is(15)))
                 .andReturn();
     }
 
