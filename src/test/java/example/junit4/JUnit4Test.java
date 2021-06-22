@@ -1,9 +1,10 @@
-package example.junit;
+package example.junit4;
 
 import io.simpolor.test.controller.DemoController;
 import io.simpolor.test.domain.Demo;
 import io.simpolor.test.service.DemoService;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 import org.mockito.stubbing.Answer;
@@ -16,7 +17,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
-public class JUnitDemoTest {
+public class JUnit4Test {
 
     @Mock
     HttpServletRequest request;
@@ -27,25 +28,25 @@ public class JUnitDemoTest {
     @InjectMocks
     DemoController demoController;
 
+    @Before
+    public void setup() {
+        // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
+        // InjectMocks을 사용하기 위한 작업
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     public void testDemoMock() {
 
         // given
         long seq = 1;
-
-        // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
-        // InjectMocks을 사용하기 위한 작업
-        MockitoAnnotations.initMocks(this);
-
         Demo givenSuccessDemoResult = DemoReflection.exampleDemoResult(1, "test", 19);
 
         // stubbing
         when(demoService.view(anyLong())).thenReturn(givenSuccessDemoResult);
 
-
         // when
         Demo result = demoController.demoView(seq);
-
 
         // then
         Assert.assertNotNull(result);
@@ -56,7 +57,6 @@ public class JUnitDemoTest {
 
         Demo demo = spy(Demo.class);
 
-        MockitoAnnotations.initMocks(this);
         Assert.assertTrue(demo != null);
     }
 
@@ -65,10 +65,6 @@ public class JUnitDemoTest {
 
         // given
         long seq = 1;
-
-        // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
-        MockitoAnnotations.initMocks(this);
-
         when(demoService.view(anyLong())).thenReturn(
             new Demo(){ }
         );
@@ -84,9 +80,6 @@ public class JUnitDemoTest {
 
     @Test
     public void testDemoDoAnswer(){
-
-        // Mock Annotations이 선언된 객체를 찾아 Mock객체를 생성
-        MockitoAnnotations.initMocks(this);
 
         // 파라미터를 그대로 리턴하기 위한 구문
         doAnswer((Answer) invocation -> {
@@ -107,7 +100,6 @@ public class JUnitDemoTest {
 
         // when
         Demo result = demoController.demoView(seq);
-        System.out.println("result : "+result.toString());
 
 
         // than

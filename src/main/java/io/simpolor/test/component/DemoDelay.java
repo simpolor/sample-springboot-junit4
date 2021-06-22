@@ -21,7 +21,7 @@ public class DemoDelay {
 
         log.info("doDelay Start");
         while (laterTime.isAfter(LocalDateTime.now())){
-
+            // while 문을 이용해서 지연을 시킴
         }
         log.info("doDelay End");
     }

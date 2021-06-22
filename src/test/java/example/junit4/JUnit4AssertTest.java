@@ -1,71 +1,88 @@
-package example.junit;
+package example.junit4;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class JUnitAssert {
+public class JUnit4AssertTest {
 
     @Test
     public void testAssertEqual() {
-        String str = "a";
-        Assert.assertEquals("a", str);
+
+        String actual = "a";
+
+        Assert.assertEquals("a", actual);
     }
 
     @Test
     public void testAssertNotEqual() {
-        String str = "a";
-        Assert.assertNotEquals("b", str);
+
+        String actual = "a";
+
+        Assert.assertNotEquals("b", actual);
     }
 
     @Test
     public void testAssertSame() {
-        String str = "abc";
-        Assert.assertSame("abc", str);
+
+        String actual = "abc";
+
+        Assert.assertSame("abc", actual);
     }
 
     @Test
     public void testAssertNotSame() {
-        String str = "zxc";
-        Assert.assertNotSame("abc", str);
+
+        String actual = "zxc";
+
+        Assert.assertNotSame("abc", actual);
     }
 
     @Test
     public void testAssertNull() {
-        String str = null;
-        Assert.assertNull(str);
+
+        String actual = null;
+
+        Assert.assertNull(actual);
     }
 
     @Test
     public void testAssertNotNull() {
-        String str = "abc";
-        Assert.assertNotNull(str);
+
+        String actual = "abc";
+
+        Assert.assertNotNull(actual);
     }
 
     @Test
     public void testAssertBoolean() {
+
         Assert.assertTrue(true);
         Assert.assertFalse(false);
     }
 
     @Test
     public void testAssertArrayEquals() {
-        String[] strArr = new String[]{"a", "b", "c"};
-        Assert.assertArrayEquals(new String[]{"a", "b", "c"}, strArr);
+
+        String[] actual = new String[]{"a", "b", "c"};
+
+        Assert.assertArrayEquals(new String[]{"a", "b", "c"}, actual);
     }
 
     @Test
     public void testAssertThat() {
 
-        int num = 10;
+        int actual = 10;
 
         // assertThat Method를 이용하여 org.hamcrest.CoreMatchers Library를 사용할 수 있음
-        Assert.assertThat(num, CoreMatchers.is(10));
+        Assert.assertThat(actual, CoreMatchers.is(10));
     }
 
     // @Test
     public void testAssertFail() {
+
         Assert.fail();
+
         Assert.fail("Message Fail");
     }
 

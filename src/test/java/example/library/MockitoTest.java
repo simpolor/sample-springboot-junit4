@@ -1,4 +1,4 @@
-package example.junit;
+package example.library;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -11,63 +11,61 @@ import org.mockito.*;
 
 import java.util.*;
 
-public class JUnitMockTest {
+public class MockitoTest {
 
     @Test
     public void testMockVerify(){
 
-        Demo demo = mock(Demo.class);
-        String name = "SIMPOLOR";
-        demo.setName(name);
+        Demo actual = mock(Demo.class);
+        actual.setName("name");
 
         // n번 호출했는지 체크
-        verify(demo, times(1)).setName(any(String.class)); // success
+        verify(actual, times(1)).setName(any(String.class)); // success
 
         // 호출 안했는지 체크
-        verify(demo, never()).getName(); // success
-        verify(demo, never()).setName(eq("ETC")); // success
+        verify(actual, never()).getName(); // success
+        verify(actual, never()).setName(eq("ETC")); // success
         // verify(p, never()).setName(eq("JDM")); // fail
 
         // 최소한 1번 이상 호출했는지 체크
-        verify(demo, atLeastOnce()).setName(any(String.class)); // success
+        verify(actual, atLeastOnce()).setName(any(String.class)); // success
 
         // 2번 이하 호출 했는지 체크
-        verify(demo, atMost(2)).setName(any(String.class)); // success
+        verify(actual, atMost(2)).setName(any(String.class)); // success
 
         // 2번 이상 호출 했는지 체크
         // verify(p, atLeast(2)).setName(any(String.class)); // fail
 
         // 지정된 시간(millis)안으로 메소드를 호출 했는지 체크
-        verify(demo, timeout(100)).setName(any(String.class)); // success
+        verify(actual, timeout(100)).setName(any(String.class)); // success
 
         // 지정된 시간(millis)안으로 1번 이상 메소드를 호출 했는지 체크
-        verify(demo, timeout(100).atLeast(1)).setName(any(String.class)); // success
+        verify(actual, timeout(100).atLeast(1)).setName(any(String.class)); // success
     }
 
     @Test
     public void testInOrder() {
 
-        List<String> singleMock = mock(List.class);
+        List<String> mock = mock(List.class);
+        mock.add("first");
+        mock.add("second");
 
-        singleMock.add("first");
-        singleMock.add("second");
+        InOrder inOrder = inOrder(mock);
 
-        InOrder inOrder = inOrder(singleMock);
-
-        inOrder.verify(singleMock).add("first");
-        inOrder.verify(singleMock).add("second");
+        inOrder.verify(mock).add("first");
+        inOrder.verify(mock).add("second");
 
         // 위와 비교
-        List<String> firstMock = mock(List.class);
-        List<String> secondMock = mock(List.class);
+        List<String> mock1 = mock(List.class);
+        List<String> mock2 = mock(List.class);
 
-        firstMock.add("first");
-        secondMock.add("second");
+        mock1.add("first");
+        mock2.add("second");
 
-        InOrder inOrders = inOrder(firstMock, secondMock);
+        InOrder inOrders = inOrder(mock1, mock2);
 
-        inOrders.verify(firstMock).add("first");
-        inOrders.verify(secondMock).add("second");
+        inOrders.verify(mock1).add("first");
+        inOrders.verify(mock2).add("second");
     }
 
     @Test

@@ -1,4 +1,4 @@
-package example.junit;
+package example.junit4;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,11 +10,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static junit.framework.TestCase.fail;
 
 
-public class JUnitExceptionTest {
+public class JUnit4ExceptionTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
+    /**
+     * try/catch 문을 이용한 예외처리
+     */
     @Test
     public void testDivisionException() {
 
@@ -29,6 +32,9 @@ public class JUnitExceptionTest {
         }
     }
 
+    /**
+     * thrown 라이브러리를 이용한 예외처리
+     */
     @Test
     public void testDivisionExpectedException() {
 
@@ -37,14 +43,15 @@ public class JUnitExceptionTest {
         thrown.expectMessage(containsString("/ by zero"));
 
         int i = 1 / 0;
-
     }
 
+    /**
+     * Junit의 expected를 이용한 예외처리
+     */
     @Test(expected= ArithmeticException.class)
     public void testDivisionAnnotationException() {
 
         int i = 1 / 0;
-
     }
 
 }

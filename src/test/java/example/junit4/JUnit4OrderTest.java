@@ -1,4 +1,4 @@
-package example.junit;
+package example.junit4;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class JUnitOrderTest {
+public class JUnit4OrderTest {
 
 	@BeforeClass
 	public static void setupBeforeClass()  {

@@ -17,14 +17,14 @@ public class DemoDelayTest {
     }
 
     @Test
-    public void testThreadSleep() throws Exception {
+    public void testThreadSleep() throws InterruptedException {
 
         Thread.sleep(3000);
         System.out.println("Do thread sleep");
     }
 
     @Test
-    public void testCountDownLatch() throws Exception {
+    public void testCountDownLatch() throws InterruptedException {
 
         lock.await(3000, TimeUnit.MILLISECONDS);
         System.out.println("Count down latch");
